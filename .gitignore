@@ -1,2 +1,4 @@
 bead 
 lex.yy.cc
+.vscode
+.DS_Store

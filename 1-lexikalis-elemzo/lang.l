@@ -5,7 +5,7 @@
 #include <cstdlib>
 %}
 
-LETTER      [a-zA-Z]
+LETTER      [a-z]
 DIGIT       [0-9]
 WS          [ \t\n]
 COMMENT     ^\*.*$
@@ -26,6 +26,8 @@ IDENTIFIER  {LETTER}({LETTER}|{DIGIT}|_)*
 "NOT"           std::cout << "kulcsszo: " << YYText() << std::endl;
 "MOVE"          std::cout << "kulcsszo: " << YYText() << std::endl;
 "TO"            std::cout << "kulcsszo: " << YYText() << std::endl;
+"FROM"          std::cout << "kulcsszo: " << YYText() << std::endl;
+"BY"            std::cout << "kulcsszo: " << YYText() << std::endl;
 "READ"          std::cout << "kulcsszo: " << YYText() << std::endl;
 "WRITE"         std::cout << "kulcsszo: " << YYText() << std::endl;
 "ADD"           std::cout << "kulcsszo: " << YYText() << std::endl;

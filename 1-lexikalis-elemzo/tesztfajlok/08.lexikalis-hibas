@@ -1,2 +1,2 @@
 PROGRAM semmi.
-DATA: a_ TYPE I.
+DATA: A TYPE I.

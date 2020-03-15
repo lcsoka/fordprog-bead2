@@ -12,5 +12,5 @@ lex.yy.cc: $(COMPILERNAME).l
 parse.cc: $(COMPILERNAME).y
 	bisonc++ $(COMPILERNAME).y
 
-$(COMPILERNAME): $(COMPILERNAME).cc lex.yy.cc parse.cc
-	g++ -o$(COMPILERNAME) $(COMPILERNAME).cc parse.cc lex.yy.cc
+$(COMPILERNAME): main.cpp lex.yy.cc parse.cc
+	g++ -o$(COMPILERNAME) main.cpp parse.cc lex.yy.cc

@@ -50,20 +50,9 @@ declaration_block:
         std::cout << "declaration_block -> \"\"" << std::endl;
     }
 |
-DATA COLON declaration declarations
+DATA COLON declaration more_declaration LINE_END
     {
-        std::cout << "declaration_block -> DATA COLON declaration declarationsa" << std::endl;
-    }
-;
-
-declarations: 
-    {
-        std::cout << "declarations -> \"\"" << std::endl;
-    }
-|
-declaration more_declaration LINE_END
-    {
-        std::cout << "declarations -> declaration declarations" << std::endl;
+        std::cout << "declaration_block -> DATA COLON declaration more_declaration LINE_END" << std::endl;
     }
 ;
 
@@ -89,15 +78,24 @@ I
     {
         std::cout << "type -> I" << std::endl;
     }
+|
 B
     {
         std::cout << "type -> B" << std::endl;
     }
 ;
 
-body: expressions
+body: 
+expressions
     {
         std::cout << "body -> expressions" << std::endl;
+    }
+;
+
+at_least_one_expression:
+    expression expressions
+    {
+        std::cout << "expressions -> expression expressions" << std::endl;
     }
 ;
 
@@ -137,6 +135,11 @@ if_statement
     {
         std::cout << "expressions -> if_statement" << std::endl;
     }
+|
+expr
+    {
+        std::cout << "expressions -> expr" << std::endl;
+    }
 ;
 
 read: READ TO IDENTIFIER LINE_END
@@ -153,7 +156,7 @@ write: WRITE expr LINE_END
 
 assignment: MOVE expr TO IDENTIFIER LINE_END
     {
-        std::cout << "write -> MOVE expr TO IDENTIFIER LINE_END" << std::endl;
+        std::cout << "assignment -> MOVE expr TO IDENTIFIER LINE_END" << std::endl;
     }
 ;
 
@@ -170,12 +173,12 @@ if_statement: IF expr LINE_END if_second_half
 ;
 
 if_second_half:
-expressions ENDIF LINE_END
+at_least_one_expression ENDIF LINE_END
     {
         std::cout << "if_second_half -> expressions ENDIF LINE_END" << std::endl;
     }
 |
-expressions ELSE expressions ENDIF LINE_END
+at_least_one_expression ELSE LINE_END at_least_one_expression ENDIF LINE_END
     {
         std::cout << "if_second_half -> expressions ELSE expressions ENDIF LINE_END" << std::endl;
     }
@@ -247,17 +250,17 @@ SUBTRACT expr FROM IDENTIFIER LINE_END
         std::cout << "expr -> SUBTRACT expr FROM IDENTIFIER LINE_END" << std::endl;
     }
 |
-MULTIPLY IDENTIFIER BY expr
+MULTIPLY IDENTIFIER BY expr  LINE_END
     {
         std::cout << "expr -> MULTIPLY IDENTIFIER BY expr" << std::endl;
     }
 |
-DIVIDE IDENTIFIER BY expr
+DIVIDE IDENTIFIER BY expr LINE_END
     {
         std::cout << "expr -> DIVIDE IDENTIFIER BY expr" << std::endl;
     }
 |
-MOD IDENTIFIER BY expr TO IDENTIFIER
+MOD IDENTIFIER BY expr TO IDENTIFIER LINE_END
     {
         std::cout << "expr -> MOD IDENTIFIER BY exor TO IDENTIFIER" << std::endl;
     }
